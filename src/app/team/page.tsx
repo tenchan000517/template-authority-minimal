@@ -37,10 +37,15 @@ export default function TeamPage() {
           <FadeInSection className="flex flex-col items-center px-6">
             {/* 代表者写真 */}
             <div className="w-full max-w-[320px] lg:max-w-[400px]">
-              <div className="relative aspect-[3/4] bg-gray">
-                <div className="absolute inset-0 flex items-center justify-center text-light text-sm">
-                  Photo
-                </div>
+              <div className="relative aspect-[3/4] bg-gray overflow-hidden">
+                <Image
+                  src={representative.image}
+                  alt={`${representative.nameJa}（${representative.title}）`}
+                  fill
+                  sizes="(max-width: 1024px) 320px, 400px"
+                  className="object-cover"
+                  priority
+                />
               </div>
             </div>
 
@@ -68,10 +73,14 @@ export default function TeamPage() {
               {otherMembers.map((member, index) => (
                 <FadeInSection key={member.id} delay={index * 100} className="text-center">
                   {/* メンバー写真 */}
-                  <div className="relative aspect-[3/4] bg-white">
-                    <div className="absolute inset-0 flex items-center justify-center text-light text-sm">
-                      Photo
-                    </div>
+                  <div className="relative aspect-[3/4] bg-white overflow-hidden">
+                    <Image
+                      src={member.image}
+                      alt={`${member.nameJa}（${member.title}）`}
+                      fill
+                      sizes="(max-width: 1024px) 50vw, 280px"
+                      className="object-cover"
+                    />
                   </div>
 
                   {/* 名前と肩書き */}

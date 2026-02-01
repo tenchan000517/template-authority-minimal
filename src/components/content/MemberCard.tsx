@@ -25,11 +25,14 @@ export default function MemberCard({
             : ''
         }`}
       >
-        <div className="relative aspect-[3/4] bg-gray">
-          {/* 実際の画像がある場合は Image コンポーネントを使用 */}
-          <div className="absolute inset-0 flex items-center justify-center text-light text-sm">
-            Photo
-          </div>
+        <div className="relative aspect-[3/4] bg-gray overflow-hidden">
+          <Image
+            src={image}
+            alt={`${nameJa}（${title}）`}
+            fill
+            sizes={isRepresentative ? '(max-width: 1024px) 320px, 400px' : '(max-width: 1024px) 50vw, 280px'}
+            className="object-cover"
+          />
         </div>
       </div>
 

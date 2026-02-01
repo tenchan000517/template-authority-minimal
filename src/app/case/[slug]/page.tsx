@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { cases, getCaseBySlug } from '@/lib/site';
 import FadeInSection from '@/components/animation/FadeInSection';
@@ -53,10 +54,15 @@ export default async function CaseDetailPage({ params }: Props) {
       {/* セクション2: メイン画像 */}
       <section className="pb-16 lg:pb-20">
         <FadeInSection className="container-content">
-          <div className="relative aspect-[16/9] bg-gray">
-            <div className="absolute inset-0 flex items-center justify-center text-light text-sm">
-              Main Image
-            </div>
+          <div className="relative aspect-[16/9] bg-gray overflow-hidden">
+            <Image
+              src={caseData.mainImage}
+              alt={`${caseData.client}：${caseData.title}`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 1200px"
+              className="object-cover"
+              priority
+            />
           </div>
         </FadeInSection>
       </section>
@@ -115,11 +121,15 @@ export default async function CaseDetailPage({ params }: Props) {
         <section className="pb-16 lg:pb-20">
           <div className="container-content">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {caseData.images.map((_, index) => (
-                <div key={index} className="relative aspect-[4/3] bg-gray">
-                  <div className="absolute inset-0 flex items-center justify-center text-light text-sm">
-                    Result Image {index + 1}
-                  </div>
+              {caseData.images.map((imageSrc, index) => (
+                <div key={index} className="relative aspect-[4/3] bg-gray overflow-hidden">
+                  <Image
+                    src={imageSrc}
+                    alt={`${caseData.client}：${caseData.title} - 成果物${index + 1}`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 600px"
+                    className="object-cover"
+                  />
                 </div>
               ))}
             </div>

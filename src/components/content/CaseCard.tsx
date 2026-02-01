@@ -25,10 +25,13 @@ export default function CaseCard({
           isMain ? 'aspect-[16/9]' : 'aspect-[4/3]'
         } bg-gray overflow-hidden`}
       >
-        {/* 実際の画像がある場合は Image コンポーネントを使用 */}
-        <div className="absolute inset-0 flex items-center justify-center text-light text-sm">
-          {isMain ? 'Main Case Image' : 'Case Image'}
-        </div>
+        <Image
+          src={image}
+          alt={`${client}：${title}`}
+          fill
+          sizes={isMain ? '(max-width: 1024px) 100vw, 800px' : '(max-width: 1024px) 50vw, 400px'}
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+        />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
       </div>
       <div className={isMain ? 'mt-6' : 'mt-5'}>

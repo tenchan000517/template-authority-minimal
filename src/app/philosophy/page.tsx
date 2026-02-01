@@ -30,11 +30,15 @@ export default function PhilosophyPage() {
       <section className="pb-20 lg:pb-[160px]">
         <FadeInSection className="px-6 lg:px-0 lg:flex lg:justify-end lg:pr-[5%]">
           <div className="w-full max-w-[300px] mx-auto lg:mx-0 lg:max-w-none lg:w-[45%] lg:max-w-[600px]">
-            <div className="relative aspect-[3/4] bg-gray">
-              {/* 実際の写真がある場合は Image コンポーネントを使用 */}
-              <div className="absolute inset-0 flex items-center justify-center text-light text-sm">
-                Portrait Photo
-              </div>
+            <div className="relative aspect-[3/4] bg-gray overflow-hidden">
+              <Image
+                src={philosophy.portrait.image}
+                alt={`${philosophy.profile.nameJa}（${philosophy.message.signature.title}）のポートレート`}
+                fill
+                sizes="(max-width: 1024px) 300px, 600px"
+                className="object-cover"
+                priority
+              />
             </div>
             <p className="mt-2 text-caption text-center lg:text-left">
               {philosophy.portrait.caption}
