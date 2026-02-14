@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { pages } from '@/lib/site';
-import FadeInSection from '@/components/animation/FadeInSection';
+import { FadeInUp } from '@/components/animations';
 
 export default function ContactPage() {
   const { contact } = pages;
@@ -104,7 +104,7 @@ export default function ContactPage() {
 
       {/* セクション2: フォーム */}
       <section className="section-normal bg-gray">
-        <FadeInSection className="container-content max-w-[680px]">
+        <FadeInUp className="container-content max-w-[680px]">
           <form onSubmit={handleSubmit} className="space-y-10">
             {/* お問い合わせ種別 */}
             <div>
@@ -276,7 +276,7 @@ export default function ContactPage() {
               </button>
             </div>
           </form>
-        </FadeInSection>
+        </FadeInUp>
       </section>
     </>
   );

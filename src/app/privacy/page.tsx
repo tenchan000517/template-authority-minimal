@@ -1,10 +1,7 @@
-import { pages, company } from '@/lib/site';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'プライバシーポリシー | Privacy Policy',
-  description: `${company.name}の個人情報保護方針をご確認いただけます。`,
-};
+import { pages, company } from '@/lib/site';
+import { FadeInUp } from '@/components/animations';
 
 export default function PrivacyPage() {
   const { privacy } = pages;
@@ -25,7 +22,7 @@ export default function PrivacyPage() {
 
       {/* セクション2: 本文 */}
       <section className="section-normal">
-        <div className="container-content max-w-[800px]">
+        <FadeInUp className="container-content max-w-[800px]">
           {/* 前文 */}
           <p className="text-body leading-[1.9]">
             {privacy.preamble}
@@ -66,7 +63,7 @@ export default function PrivacyPage() {
               Email：{privacy.contact.email}
             </p>
           </div>
-        </div>
+        </FadeInUp>
       </section>
     </>
   );

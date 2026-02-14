@@ -1,12 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { pages } from '@/lib/site';
-import FadeInSection from '@/components/animation/FadeInSection';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'サービス | Services',
-  description: '戦略設計、デザイン、ブランディング。本質的な課題に向き合い、持続的な価値を生み出します。',
-};
+import { FadeInUp } from '@/components/animations';
 
 export default function ServicePage() {
   const { service } = pages;
@@ -30,11 +26,11 @@ export default function ServicePage() {
 
       {/* セクション2: 私たちの哲学 */}
       <section className="section-normal">
-        <FadeInSection className="flex flex-col items-center text-center px-6">
+        <FadeInUp className="flex flex-col items-center text-center px-6">
           <p className="font-mincho text-[17px] lg:text-[20px] leading-[2.2] text-body-color whitespace-pre-line max-w-[520px]">
             {service.philosophy.text}
           </p>
-        </FadeInSection>
+        </FadeInUp>
       </section>
 
       {/* セクション3: サービス詳細 */}
@@ -42,7 +38,7 @@ export default function ServicePage() {
         <div className="container-content">
           <div className="space-y-20 lg:space-y-32">
             {service.services.map((item, index) => (
-              <FadeInSection
+              <FadeInUp
                 key={item.numberEn}
                 className={`lg:flex lg:gap-16 ${
                   index % 2 === 1 ? 'lg:flex-row-reverse' : ''
@@ -77,7 +73,7 @@ export default function ServicePage() {
                     ))}
                   </ul>
                 </div>
-              </FadeInSection>
+              </FadeInUp>
             ))}
           </div>
         </div>
@@ -87,19 +83,19 @@ export default function ServicePage() {
       <section className="section-normal">
         <div className="container-content">
           {/* セクションタイトル */}
-          <FadeInSection className="mb-16 lg:mb-20">
+          <FadeInUp className="mb-16 lg:mb-20">
             <span className="block font-serif-en text-[12px] lg:text-[14px] tracking-[0.2em] text-light">
               Process
             </span>
             <h2 className="mt-2 font-mincho text-[24px] lg:text-[28px] tracking-[0.08em] text-main">
               進め方
             </h2>
-          </FadeInSection>
+          </FadeInUp>
 
           {/* プロセスステップ */}
           <div className="space-y-12 lg:space-y-16 max-w-[680px]">
             {service.process.map((step, index) => (
-              <FadeInSection key={step.numberEn} delay={index * 100} className="flex gap-6 lg:gap-10">
+              <FadeInUp key={step.numberEn} delay={index * 100} className="flex gap-6 lg:gap-10">
                 <span className="flex-shrink-0 font-serif-en text-[14px] tracking-[0.15em] text-lighter">
                   {step.numberEn}
                 </span>
@@ -111,7 +107,7 @@ export default function ServicePage() {
                     {step.description}
                   </p>
                 </div>
-              </FadeInSection>
+              </FadeInUp>
             ))}
           </div>
         </div>
@@ -119,7 +115,7 @@ export default function ServicePage() {
 
       {/* セクション5: CTA */}
       <section className="bg-gray section-small">
-        <FadeInSection className="flex flex-col items-center text-center px-6">
+        <FadeInUp className="flex flex-col items-center text-center px-6">
           <p className="text-[16px] lg:text-[18px] text-body-color">
             {service.cta.text}
           </p>
@@ -134,7 +130,7 @@ export default function ServicePage() {
               </Link>
             ))}
           </div>
-        </FadeInSection>
+        </FadeInUp>
       </section>
     </>
   );

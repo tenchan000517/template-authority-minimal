@@ -1,6 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { pages, meta, navigation } from '@/lib/site';
-import FadeInSection from '@/components/animation/FadeInSection';
+import { FadeInUp, StaggerContainer, HeroBackground } from '@/components/animations';
 
 export default function Home() {
   const { top } = pages;
@@ -9,29 +11,31 @@ export default function Home() {
     <>
       {/* セクション1: ファーストビュー */}
       <section className="relative min-h-screen flex items-start pt-[40vh] lg:pt-[35vh]">
-        <div className="container-content w-full">
+        <HeroBackground className="container-content w-full">
           {/* メインキャッチコピー */}
-          <h1 className="font-mincho text-[36px] lg:text-[72px] leading-[1.6] tracking-[0.15em] text-main whitespace-pre-line">
-            {top.catchphrase.main}
-          </h1>
-        </div>
+          <FadeInUp delay={200}>
+            <h1 className="font-mincho text-[36px] lg:text-[72px] leading-[1.6] tracking-[0.15em] text-main whitespace-pre-line">
+              {top.catchphrase.main}
+            </h1>
+          </FadeInUp>
+        </HeroBackground>
 
         {/* 英語タグライン - 右下配置 */}
-        <div className="absolute right-[5%] lg:right-[10%] bottom-[15%]">
+        <FadeInUp delay={400} className="absolute right-[5%] lg:right-[10%] bottom-[15%]">
           <p className="font-serif-en text-[12px] lg:text-[14px] tracking-[0.2em] text-light text-right">
             {top.catchphrase.sub}
           </p>
-        </div>
+        </FadeInUp>
 
         {/* スクロールインジケーター - PC のみ */}
-        <div className="hidden lg:block absolute bottom-[5%] left-1/2 -translate-x-1/2">
+        <FadeInUp delay={600} className="hidden lg:block absolute bottom-[5%] left-1/2 -translate-x-1/2">
           <div className="w-px h-10 bg-[#CCCCCC]" />
-        </div>
+        </FadeInUp>
       </section>
 
       {/* セクション2: 理念の導入 */}
       <section className="section-large">
-        <FadeInSection className="flex flex-col items-center text-center px-6">
+        <FadeInUp className="flex flex-col items-center text-center px-6">
           <blockquote className="font-mincho text-[18px] lg:text-[24px] leading-[2.0] tracking-[0.05em] text-body-color max-w-[600px]">
             {top.philosophyTeaser.quote}
           </blockquote>
@@ -42,7 +46,7 @@ export default function Home() {
           >
             {top.philosophyTeaser.linkText}
           </Link>
-        </FadeInSection>
+        </FadeInUp>
       </section>
 
       {/* セクション3: 事業の暗示 */}
@@ -60,10 +64,10 @@ export default function Home() {
               const pos = positions[index] || positions[0];
 
               return (
-                <FadeInSection
+                <FadeInUp
                   key={service.numberEn}
                   className="lg:absolute"
-                  delay={index * 150}
+                  delay={index * 0.15}
                   style={{
                     left: pos.left,
                     top: pos.top,
@@ -75,26 +79,26 @@ export default function Home() {
                   <span className="block mt-2 text-[18px] lg:text-[20px] font-medium text-main">
                     {service.titleJa}
                   </span>
-                </FadeInSection>
+                </FadeInUp>
               );
             })}
           </div>
 
           {/* サービス詳細リンク */}
-          <FadeInSection className="mt-20 lg:mt-32 text-center lg:text-left" delay={450}>
+          <FadeInUp className="mt-20 lg:mt-32 text-center lg:text-left" delay={0.45}>
             <Link
               href="/service"
               className="text-link text-link-arrow"
             >
               サービス詳細
             </Link>
-          </FadeInSection>
+          </FadeInUp>
         </div>
       </section>
 
       {/* セクション4: お問い合わせ導線 */}
       <section className="section-large">
-        <FadeInSection className="flex flex-col items-center text-center px-6">
+        <FadeInUp className="flex flex-col items-center text-center px-6">
           <p className="font-mincho text-[22px] lg:text-[28px] leading-[1.6] text-body-color whitespace-pre-line">
             {top.cta.text}
           </p>
@@ -105,7 +109,7 @@ export default function Home() {
           >
             {top.cta.buttonText}
           </Link>
-        </FadeInSection>
+        </FadeInUp>
       </section>
     </>
   );

@@ -1,13 +1,8 @@
-import Image from 'next/image';
+'use client';
+
 import Link from 'next/link';
 import { pages } from '@/lib/site';
-import FadeInSection from '@/components/animation/FadeInSection';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: '代表メッセージ | Philosophy',
-  description: '代表者の考え方と価値観をお伝えします。本質を、かたちに。',
-};
+import { FadeInUp, FadeInImage } from '@/components/animations';
 
 export default function PhilosophyPage() {
   const { philosophy } = pages;
@@ -28,28 +23,29 @@ export default function PhilosophyPage() {
 
       {/* セクション2: 代表者ポートレート */}
       <section className="pb-20 lg:pb-[160px]">
-        <FadeInSection className="px-6 lg:px-0 lg:flex lg:justify-end lg:pr-[5%]">
+        <div className="px-6 lg:px-0 lg:flex lg:justify-end lg:pr-[5%]">
           <div className="w-full max-w-[300px] mx-auto lg:mx-0 lg:max-w-none lg:w-[45%] lg:max-w-[600px]">
-            <div className="relative aspect-[3/4] bg-gray overflow-hidden">
-              <Image
-                src={philosophy.portrait.image}
-                alt={`${philosophy.profile.nameJa}（${philosophy.message.signature.title}）のポートレート`}
-                fill
-                sizes="(max-width: 1024px) 300px, 600px"
-                className="object-cover"
-                priority
-              />
-            </div>
-            <p className="mt-2 text-caption text-center lg:text-left">
-              {philosophy.portrait.caption}
-            </p>
+            <FadeInImage
+              src={philosophy.portrait.image}
+              alt={`${philosophy.profile.nameJa}（${philosophy.message.signature.title}）のポートレート`}
+              fill
+              sizes="(max-width: 1024px) 300px, 600px"
+              className="object-cover"
+              containerClassName="relative aspect-[3/4] bg-gray"
+              priority
+            />
+            <FadeInUp delay={100}>
+              <p className="mt-2 text-caption text-center lg:text-left">
+                {philosophy.portrait.caption}
+              </p>
+            </FadeInUp>
           </div>
-        </FadeInSection>
+        </div>
       </section>
 
       {/* セクション3: 代表メッセージ本文 */}
       <section className="bg-gray section-normal">
-        <FadeInSection className="container-content">
+        <FadeInUp className="container-content">
           {/* PC: 縦書き見出し + 横書き本文 */}
           <div className="lg:flex lg:gap-12">
             {/* 縦書き見出し - PC のみ */}
@@ -81,12 +77,12 @@ export default function PhilosophyPage() {
               </div>
             </div>
           </div>
-        </FadeInSection>
+        </FadeInUp>
       </section>
 
       {/* セクション4: プロフィール */}
       <section className="section-normal">
-        <FadeInSection className="flex flex-col items-center text-center px-6">
+        <FadeInUp className="flex flex-col items-center text-center px-6">
           {/* セクションタイトル */}
           <span className="block font-serif-en text-[12px] lg:text-[14px] tracking-[0.2em] text-light">
             Profile
@@ -111,12 +107,12 @@ export default function PhilosophyPage() {
               </p>
             ))}
           </div>
-        </FadeInSection>
+        </FadeInUp>
       </section>
 
       {/* セクション5: 次への導線 */}
       <section className="bg-gray section-small">
-        <FadeInSection className="flex flex-col items-center gap-12 lg:flex-row lg:justify-center lg:gap-32 px-6">
+        <FadeInUp className="flex flex-col items-center gap-12 lg:flex-row lg:justify-center lg:gap-32 px-6">
           {/* 事例へ */}
           <Link href="/case" className="group text-center">
             <span className="block font-serif-en text-[12px] lg:text-[14px] tracking-[0.2em] text-light">
@@ -136,7 +132,7 @@ export default function PhilosophyPage() {
               サービスを見る →
             </span>
           </Link>
-        </FadeInSection>
+        </FadeInUp>
       </section>
     </>
   );

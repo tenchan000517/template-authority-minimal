@@ -1,12 +1,7 @@
-import Image from 'next/image';
-import { pages } from '@/lib/site';
-import FadeInSection from '@/components/animation/FadeInSection';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'チーム | Team',
-  description: '私たちと一緒に、本質的な価値を生み出しましょう。',
-};
+import { pages } from '@/lib/site';
+import { FadeInUp, FadeInImage } from '@/components/animations';
 
 export default function TeamPage() {
   const { team } = pages;
@@ -34,23 +29,22 @@ export default function TeamPage() {
       {/* セクション2: 代表者 */}
       {representative && (
         <section className="section-normal">
-          <FadeInSection className="flex flex-col items-center px-6">
+          <div className="flex flex-col items-center px-6">
             {/* 代表者写真 */}
             <div className="w-full max-w-[320px] lg:max-w-[400px]">
-              <div className="relative aspect-[3/4] bg-gray overflow-hidden">
-                <Image
-                  src={representative.image}
-                  alt={`${representative.nameJa}（${representative.title}）`}
-                  fill
-                  sizes="(max-width: 1024px) 320px, 400px"
-                  className="object-cover"
-                  priority
-                />
-              </div>
+              <FadeInImage
+                src={representative.image}
+                alt={`${representative.nameJa}（${representative.title}）`}
+                fill
+                sizes="(max-width: 1024px) 320px, 400px"
+                className="object-cover"
+                containerClassName="relative aspect-[3/4] bg-gray"
+                priority
+              />
             </div>
 
             {/* 名前と肩書き */}
-            <div className="mt-6 text-center">
+            <FadeInUp delay={100} className="mt-6 text-center">
               <p className="font-serif-en text-[12px] lg:text-[13px] tracking-[0.15em] text-light">
                 {representative.nameEn}
               </p>
@@ -60,8 +54,8 @@ export default function TeamPage() {
               <p className="mt-2 text-[13px] lg:text-[14px] text-sub">
                 {representative.title}
               </p>
-            </div>
-          </FadeInSection>
+            </FadeInUp>
+          </div>
         </section>
       )}
 
@@ -71,20 +65,20 @@ export default function TeamPage() {
           <div className="container-content">
             <div className="grid grid-cols-2 gap-8 lg:gap-12 max-w-[800px] mx-auto">
               {otherMembers.map((member, index) => (
-                <FadeInSection key={member.id} delay={index * 100} className="text-center">
+                <div key={member.id} className="text-center">
                   {/* メンバー写真 */}
-                  <div className="relative aspect-[3/4] bg-white overflow-hidden">
-                    <Image
-                      src={member.image}
-                      alt={`${member.nameJa}（${member.title}）`}
-                      fill
-                      sizes="(max-width: 1024px) 50vw, 280px"
-                      className="object-cover"
-                    />
-                  </div>
+                  <FadeInImage
+                    src={member.image}
+                    alt={`${member.nameJa}（${member.title}）`}
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 280px"
+                    className="object-cover"
+                    containerClassName="relative aspect-[3/4] bg-white"
+                    delay={index * 100}
+                  />
 
                   {/* 名前と肩書き */}
-                  <div className="mt-4">
+                  <FadeInUp delay={index * 100 + 100} className="mt-4">
                     <p className="font-serif-en text-[11px] lg:text-[12px] tracking-[0.15em] text-light">
                       {member.nameEn}
                     </p>
@@ -94,8 +88,8 @@ export default function TeamPage() {
                     <p className="mt-1 text-[12px] lg:text-[13px] text-sub">
                       {member.title}
                     </p>
-                  </div>
-                </FadeInSection>
+                  </FadeInUp>
+                </div>
               ))}
             </div>
           </div>

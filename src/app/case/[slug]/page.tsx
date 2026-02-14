@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { cases, getCaseBySlug } from '@/lib/site';
-import FadeInSection from '@/components/animation/FadeInSection';
+import { FadeInUp, FadeInImage } from '@/components/animations';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -53,23 +53,22 @@ export default async function CaseDetailPage({ params }: Props) {
 
       {/* セクション2: メイン画像 */}
       <section className="pb-16 lg:pb-20">
-        <FadeInSection className="container-content">
-          <div className="relative aspect-[16/9] bg-gray overflow-hidden">
-            <Image
-              src={caseData.mainImage}
-              alt={`${caseData.client}：${caseData.title}`}
-              fill
-              sizes="(max-width: 1024px) 100vw, 1200px"
-              className="object-cover"
-              priority
-            />
-          </div>
-        </FadeInSection>
+        <div className="container-content">
+          <FadeInImage
+            src={caseData.mainImage}
+            alt={`${caseData.client}：${caseData.title}`}
+            fill
+            sizes="(max-width: 1024px) 100vw, 1200px"
+            className="object-cover"
+            containerClassName="relative aspect-[16/9] bg-gray"
+            priority
+          />
+        </div>
       </section>
 
       {/* セクション3: 課題 */}
       <section className="section-normal bg-gray">
-        <FadeInSection className="container-content max-w-[800px]">
+        <FadeInUp className="container-content max-w-[800px]">
           <div className="mb-10">
             <span className="block font-serif-en text-[12px] lg:text-[14px] tracking-[0.2em] text-light">
               Challenge
@@ -81,24 +80,24 @@ export default async function CaseDetailPage({ params }: Props) {
           <p className="text-body leading-[1.9] whitespace-pre-line">
             {caseData.challenge}
           </p>
-        </FadeInSection>
+        </FadeInUp>
       </section>
 
       {/* セクション4: アプローチ */}
       <section className="section-normal">
         <div className="container-content max-w-[800px]">
-          <FadeInSection className="mb-12 lg:mb-16">
+          <FadeInUp className="mb-12 lg:mb-16">
             <span className="block font-serif-en text-[12px] lg:text-[14px] tracking-[0.2em] text-light">
               Approach
             </span>
             <h2 className="mt-2 font-mincho text-[24px] lg:text-[28px] tracking-[0.08em] text-main">
               アプローチ
             </h2>
-          </FadeInSection>
+          </FadeInUp>
 
           <div className="space-y-12 lg:space-y-16">
             {caseData.approach.map((step, index) => (
-              <FadeInSection key={step.numberEn} delay={index * 100} className="flex gap-6 lg:gap-10">
+              <FadeInUp key={step.numberEn} delay={index * 100} className="flex gap-6 lg:gap-10">
                 <span className="flex-shrink-0 font-serif-en text-[14px] tracking-[0.15em] text-lighter">
                   {step.numberEn}
                 </span>
@@ -110,7 +109,7 @@ export default async function CaseDetailPage({ params }: Props) {
                     {step.description}
                   </p>
                 </div>
-              </FadeInSection>
+              </FadeInUp>
             ))}
           </div>
         </div>
@@ -122,15 +121,16 @@ export default async function CaseDetailPage({ params }: Props) {
           <div className="container-content">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {caseData.images.map((imageSrc, index) => (
-                <div key={index} className="relative aspect-[4/3] bg-gray overflow-hidden">
-                  <Image
-                    src={imageSrc}
-                    alt={`${caseData.client}：${caseData.title} - 成果物${index + 1}`}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 600px"
-                    className="object-cover"
-                  />
-                </div>
+                <FadeInImage
+                  key={index}
+                  src={imageSrc}
+                  alt={`${caseData.client}：${caseData.title} - 成果物${index + 1}`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 600px"
+                  className="object-cover"
+                  containerClassName="relative aspect-[4/3] bg-gray"
+                  delay={index * 100}
+                />
               ))}
             </div>
           </div>
@@ -139,7 +139,7 @@ export default async function CaseDetailPage({ params }: Props) {
 
       {/* セクション6: 成果 */}
       <section className="section-normal bg-gray">
-        <FadeInSection className="container-content max-w-[800px]">
+        <FadeInUp className="container-content max-w-[800px]">
           <div className="mb-10">
             <span className="block font-serif-en text-[12px] lg:text-[14px] tracking-[0.2em] text-light">
               Result
@@ -168,7 +168,7 @@ export default async function CaseDetailPage({ params }: Props) {
               ))}
             </div>
           )}
-        </FadeInSection>
+        </FadeInUp>
       </section>
 
       {/* セクション7: クライアントの声（ある場合） */}

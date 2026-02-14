@@ -1,12 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { columns, formatDate } from '@/lib/site';
-import FadeInSection from '@/components/animation/FadeInSection';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'コラム | Column',
-  description: 'ブランディング、デザイン、戦略に関するコラムをお届けします。',
-};
+import { FadeInUp } from '@/components/animations';
 
 export default function ColumnPage() {
   // 日付でソート（新しい順）
@@ -33,7 +29,7 @@ export default function ColumnPage() {
         <div className="container-content max-w-[800px]">
           <div className="divide-y divide-border">
             {sortedColumns.map((column, index) => (
-              <FadeInSection key={column.slug} delay={index * 80}>
+              <FadeInUp key={column.slug} delay={index * 80}>
                 <Link
                   href={`/column/${column.slug}`}
                   className="group block py-10 first:pt-0"
@@ -50,7 +46,7 @@ export default function ColumnPage() {
                     </p>
                   )}
                 </Link>
-              </FadeInSection>
+              </FadeInUp>
             ))}
           </div>
         </div>

@@ -1,12 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import { cases } from '@/lib/site';
-import FadeInSection from '@/components/animation/FadeInSection';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: '事例 | Case Studies',
-  description: 'これまでに手掛けたプロジェクトの事例をご紹介します。',
-};
+import { FadeInUp } from '@/components/animations';
 
 export default function CasePage() {
   // featuredを先に、その後orderでソート
@@ -35,7 +31,7 @@ export default function CasePage() {
       {/* セクション2: メイン事例 */}
       {featuredCase && (
         <section className="section-normal">
-          <FadeInSection className="container-content">
+          <FadeInUp className="container-content">
             <Link href={`/case/${featuredCase.slug}`} className="group block">
               <div className="relative aspect-[16/9] bg-gray overflow-hidden">
                 <div className="absolute inset-0 flex items-center justify-center text-light text-sm">
@@ -52,7 +48,7 @@ export default function CasePage() {
                 </h2>
               </div>
             </Link>
-          </FadeInSection>
+          </FadeInUp>
         </section>
       )}
 
@@ -62,7 +58,7 @@ export default function CasePage() {
           <div className="container-content">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
               {otherCases.map((caseItem, index) => (
-                <FadeInSection
+                <FadeInUp
                   key={caseItem.slug}
                   delay={index * 100}
                 >
@@ -85,7 +81,7 @@ export default function CasePage() {
                       </h3>
                     </div>
                   </Link>
-                </FadeInSection>
+                </FadeInUp>
               ))}
             </div>
           </div>
@@ -94,7 +90,7 @@ export default function CasePage() {
 
       {/* セクション4: CTA */}
       <section className="section-normal">
-        <FadeInSection className="flex flex-col items-center text-center px-6">
+        <FadeInUp className="flex flex-col items-center text-center px-6">
           <p className="text-[16px] lg:text-[18px] text-body-color">
             プロジェクトについてお聞かせください。
           </p>
@@ -104,7 +100,7 @@ export default function CasePage() {
           >
             Contact
           </Link>
-        </FadeInSection>
+        </FadeInUp>
       </section>
     </>
   );

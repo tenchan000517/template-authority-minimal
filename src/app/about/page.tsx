@@ -1,11 +1,7 @@
-import { pages, company } from '@/lib/site';
-import FadeInSection from '@/components/animation/FadeInSection';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: '会社概要 | About',
-  description: `${company.name}の会社概要。所在地、事業内容、沿革をご紹介します。`,
-};
+import { pages, company } from '@/lib/site';
+import { FadeInUp } from '@/components/animations';
 
 export default function AboutPage() {
   const { about } = pages;
@@ -39,7 +35,7 @@ export default function AboutPage() {
 
       {/* セクション2: 会社情報 */}
       <section className="section-normal">
-        <FadeInSection className="container-content max-w-[800px]">
+        <FadeInUp className="container-content max-w-[800px]">
           <div className="border-t border-border">
             {companyInfo.map((item, index) => (
               <div
@@ -55,13 +51,13 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </FadeInSection>
+        </FadeInUp>
       </section>
 
       {/* セクション3: 沿革（showHistory が true の場合のみ） */}
       {about.showHistory && company.history && company.history.length > 0 && (
         <section className="bg-gray section-normal">
-          <FadeInSection className="container-content max-w-[800px]">
+          <FadeInUp className="container-content max-w-[800px]">
             {/* セクションタイトル */}
             <div className="mb-12 lg:mb-16">
               <span className="block font-serif-en text-[12px] lg:text-[14px] tracking-[0.2em] text-light">
@@ -85,14 +81,14 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-          </FadeInSection>
+          </FadeInUp>
         </section>
       )}
 
       {/* セクション4: アクセス（showAccess が true の場合のみ） */}
       {about.showAccess && company.access && (
         <section className="section-normal">
-          <FadeInSection className="container-content max-w-[800px]">
+          <FadeInUp className="container-content max-w-[800px]">
             {/* セクションタイトル */}
             <div className="mb-12 lg:mb-16">
               <span className="block font-serif-en text-[12px] lg:text-[14px] tracking-[0.2em] text-light">
@@ -122,7 +118,7 @@ export default function AboutPage() {
                 <span className="text-light text-sm">Map</span>
               </div>
             </div>
-          </FadeInSection>
+          </FadeInUp>
         </section>
       )}
     </>
